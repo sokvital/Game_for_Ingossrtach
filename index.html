@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Путь к Острову - Ингосстрах Insurance Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ==================== ГЛАВНОЕ МЕНЮ ==================== -->
+<div id="mainMenu" class="container">
+    <div class="main-menu">
+        <div class="menu-title">
+            <h1>🏝️ Путь к Острову 🏝️</h1>
+            <p>⭐ Страховка Ингосстрах. Просто быть уверенным! ⭐</p>
+            <p style="font-size: 0.7rem; opacity: 0.6;">© Softmax</p>
+        </div>
+        <div class="menu-buttons">
+            <button class="btn-rules" onclick="window.showModal('rulesModal')">📖 ПРАВИЛА</button>
+            <button class="btn-insurance" onclick="window.showModal('insuranceModal')">🛡️ ДЛЯ ЧЕГО НУЖНЫ СТРАХОВКИ</button>
+            <button class="btn-play" onclick="window.startGame()">▶️ НАЧАТЬ ИГРУ</button>
+        </div>
+        <div class="sound-controls">
+            <button class="btn-sound" onclick="window.showModal('settingsModal')">⚙️ НАСТРОЙКИ</button>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== МОДАЛЬНЫЕ ОКНА ==================== -->
+
+<!-- Модальное окно правил -->
+<div id="rulesModal" class="modal" onclick="window.closeModalOnBackground(event, 'rulesModal')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-modal" style="float:right; font-size:2rem; cursor:pointer;" onclick="window.closeModal('rulesModal')">&times;</span>
+        <h2>🏆 ПРАВИЛА ИГРЫ 🏆</h2>
+        <h3>📖 СЮЖЕТ:</h3>
+        <p>Вы выиграли путёвку на остров развлечений!<br>У вас есть 100 000 рублей на всё про всё.<br>У вас уже есть БИЛЕТ на корабль до острова.<br>Нужно добраться до порта и сесть на корабль до острова.</p>
+        <h3>🛍️ ЧТО КУПИТЬ ОБЯЗАТЕЛЬНО:</h3>
+        <p>• ЭЛЕКТРОСАМОКАТ - чтобы быстро перемещаться по городу<br>• ТЕЛЕФОН - чтобы по навигатору найти путь к порту</p>
+        <h3>🛍️ ЧТО КУПИТЬ НЕОБЯЗАТЕЛЬНО, НО ЖЕЛАТЕЛЬНО:</h3>
+        <p>• Страховка электросамоката Ингосстрах - вернёт деньги за ремонт или на новый электросамокат<br>• Страховка телефона Ингосстрах - вернёт деньги за ремонт или на новый телефон<br>• Страховка здоровья Ингосстрах - вернёт деньги за лечение или лекарства<br>• Страховка билета Ингосстрах - вернёт 10000💰, если опоздаешь на корабль</p>
+        <h3>⚠️ ВАЖНО:</h3>
+        <p>• Если УГОНЯТ самокат или ПОТЕРЯЕШЬ телефон - придётся покупать новые!<br>• Если ЗАБОЛЕЕШЬ или ПОЛУЧИШЬ ТРАВМУ - придётся платить за лечение!<br>• Если ОПОЗДАЕШЬ на корабль - билет сгорает и нужен новый за 10000💰</p>
+        <p>🛡️ СТРАХОВКА Ингосстрах вернёт деньги - ты ничего не потеряешь!<br>❌ БЕЗ СТРАХОВКИ Ингосстрах - ты платишь из своего кармана!<br>⚠️ ЕСЛИ ДЕНЬГИ КОНЧАТСЯ - ТЫ НЕ ДОБЕРЁШЬСЯ ДО ОСТРОВА И ПРОИГРАЕШЬ!</p>
+        <h3>🏆 ПОБЕДА:</h3>
+        <p>• Выигрывает тот, кто попал на остров с НАИБОЛЬШЕЙ суммой денег<br>• Деньги пригодятся на развлечения на острове!<br>• ПОБЕДИТЕЛЬ ЧЕМПИОНАТА получит ПРИЗ:<br>• телефон iPhone застрахованный компанией 'Ингосстрах'</p>
+    </div>
+</div>
+
+<!-- Модальное окно о страховках -->
+<div id="insuranceModal" class="modal" onclick="window.closeModalOnBackground(event, 'insuranceModal')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-modal" style="float:right; font-size:2rem; cursor:pointer;" onclick="window.closeModal('insuranceModal')">&times;</span>
+        <h2>🛡️ ЧТО ДАЮТ СТРАХОВКИ Ингострах?</h2>
+        <h3>📱 СТРАХОВКА ТЕЛЕФОНА (5% от цены):</h3>
+        <p>→ Если разбил экран — страховая вернёт деньги за ремонт<br>→ Если потерял или украли — вернёт полную стоимость телефона<br>→ Без страховки: ты теряешь и телефон, и деньги!</p>
+        <h3>🛴 СТРАХОВКА ЭЛЕКТРОСАМОКАТА (5% от цены):</h3>
+        <p>→ Если сломался — страховая вернёт деньги на ремонт<br>→ Если угнали — вернёт полную стоимость электроэлектросамоката<br>→ Если повредил чужую машину — возместит ремонт (страхование гражданской ответственности)<br>→ Без страховки: платишь за всё из своего кармана!</p>
+        <h3>🏥 СТРАХОВКА ЗДОРОВЬЯ (10 000💰):</h3>
+        <p>→ При травме, болезни, отравлении — вернёт деньги за лечение<br>→ Без страховки: лечение очень дорогое!</p>
+        <h3>🚢 СТРАХОВКА БИЛЕТА (500💰):</h3>
+        <p>→ Если опоздал на корабль — выплатит 10000💰 на новый билет<br>→ Без страховки: теряешь билет и деньги!</p>
+        <h3>💡 ГЛАВНОЕ:</h3>
+        <p>Страховая компания Ингосстрах ВОЗМЕЩАЕТ (возвращает) деньги,<br>когда случается неприятность. Платишь немного сейчас —<br>не потеряешь много потом!</p>
+    </div>
+</div>
+
+<!-- Модальное окно настроек -->
+<div id="settingsModal" class="modal settings-modal" onclick="window.closeModalOnBackground(event, 'settingsModal')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-modal" style="float:right; font-size:2rem; cursor:pointer;" onclick="window.closeModal('settingsModal')">&times;</span>
+        <h2>⚙️ НАСТРОЙКИ</h2>
+        <h3>🎶 ВЫБОР МЕЛОДИИ</h3>
+        <select id="musicSelect" onchange="window.previewMusic()">
+            <option value="off">🔇 ВЫКЛ</option>
+            <option value="ingosstrakh" selected>🎵 Гимн Ингосстрах</option>
+            <option value="adventure">🎵 Приключенческая</option>
+            <option value="relax">🎵 Спокойная</option>
+            <option value="energetic">🎵 Энергичная</option>
+        </select>
+        <h3>🎤 ВЫБОР ГОЛОСА</h3>
+        <select id="voiceSelect" onchange="window.changeVoice()">
+            <option value="off">🔇 ВЫКЛ</option>
+        </select>
+        <div style="margin-top:20px; text-align:center;">
+            <button class="btn-play" onclick="window.closeModal('settingsModal')">✓ ЗАКРЫТЬ</button>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== ИГРОВОЙ ЭКРАН ==================== -->
+<div id="gameScreen" style="display: none;">
+    <div class="container">
+        <div class="game-main-grid">
+            <!-- Левая панель с игроками -->
+            <div class="left-panel">
+                <div class="panel-title">👥 ИГРОКИ</div>
+                <div class="player-info" id="playersList"></div>
+            </div>
+
+            <!-- Центральная область с доской -->
+            <div class="center-board-area">
+                <div class="board-panel">
+                    <canvas id="gameCanvas" class="board-canvas" width="600" height="600"></canvas>
+                    <div class="cell-info" id="cellInfo">🏁 Нажмите на клетку для информации</div>
+                </div>
+            </div>
+
+            <!-- Правая панель с событиями -->
+            <div class="right-events-panel" id="eventsPanel">
+                <div class="panel-title">📋 ЛЕНТА СОБЫТИЙ</div>
+                <div class="event-log" id="eventLog"></div>
+                <div class="events-controls">
+                    <div class="dice-display" id="eventsDiceDisplay">-</div>
+                    <button class="btn-dice" id="eventsRollButton" onclick="window.rollDice()">🎲<br>Бросить</button>
+                    <button class="btn-dice" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);" onclick="window.showModal('settingsModal')">⚙️<br>Настройки</button>
+                    <button class="btn-dice" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);" onclick="window.backToMenu()">🏠<br>Меню</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== МОДАЛЬНЫЕ ОКНА ИГРЫ ==================== -->
+
+<!-- Модальное окно магазина -->
+<div id="shopModal" class="modal" onclick="window.closeModalOnBackground(event, 'shopModal')">
+    <div class="modal-content shop-modal-content">
+        <span class="close-modal" style="float:right; font-size:2rem; cursor:pointer;" onclick="window.closeModal('shopModal')">&times;</span>
+        <h2>🏪 МАГАЗИН</h2>
+        <p id="shopInfo" style="text-align:center; font-weight:bold; margin:10px 0;"></p>
+        <h3>🛴 ЭЛЕКТРОСАМОКАТЫ (страховка 5% от цены):</h3>
+        <div class="shop-grid" id="scootersGrid"></div>
+        <h3>📱 ТЕЛЕФОНЫ (страховка 5% от цены):</h3>
+        <div class="shop-grid" id="phonesGrid"></div>
+        <h3>🛡️ СТРАХОВКИ:</h3>
+        <div class="shop-grid" id="insuranceGrid"></div>
+        <div style="text-align:center; margin-top:20px;"><button class="btn-menu" onclick="window.closeModal('shopModal')">✓ ЗАКРЫТЬ</button></div>
+    </div>
+</div>
+
+<!-- Модальное окно инвентаря -->
+<div id="inventoryModal" class="modal" onclick="window.closeModalOnBackground(event, 'inventoryModal')">
+    <div class="modal-content">
+        <span class="close-modal" style="float:right; font-size:2rem;" onclick="window.closeModal('inventoryModal')">&times;</span>
+        <h2>📦 ИНВЕНТАРЬ</h2>
+        <div id="inventoryContent"></div>
+        <button class="btn-menu" onclick="window.closeModal('inventoryModal')">ЗАКРЫТЬ</button>
+    </div>
+</div>
+
+<!-- ==================== ЭКРАН РЕЗУЛЬТАТОВ ==================== -->
+<div id="resultsScreen" style="display: none;">
+    <div class="container">
+        <div class="results-screen">
+            <div class="results-title" style="text-align:center; font-size:2rem; margin-bottom:20px;">🏆 РЕЗУЛЬТАТЫ ПУТЕШЕСТВИЯ 🏆</div>
+            <div class="winner-card" id="winnerCard"></div>
+            <table class="results-table" style="width:100%; margin:20px 0;">
+                <thead><tr><th style="text-align:center">Место</th><th style="text-align:center">Игрок</th><th style="text-align:center">Позиция</th><th style="text-align:center">ВЫПЛАТЫ ПО СТРАХОВКАМ Ингосстрах</th><th style="text-align:center">Деньги</th></tr></thead>
+                <tbody id="resultsTableBody"></tbody>
+            </table>
+        </div>
+        <div class="results-buttons">
+            <button class="btn-menu" onclick="window.backToMainMenu()">← МЕНЮ</button>
+            <button class="btn-play" onclick="window.startGame()">🔄 НОВАЯ ИГРА</button>
+            <button class="btn-insurance" onclick="window.showTournament()">🏆 ТУРНИР</button>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно турнирной таблицы -->
+<div id="tournamentModal" class="modal" onclick="window.closeModalOnBackground(event, 'tournamentModal')">
+    <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 600px;">
+        <span class="close-modal" style="float:right; font-size:2rem; cursor:pointer;" onclick="window.closeModal('tournamentModal')">&times;</span>
+        <h2 style="text-align:center;">🏆 ТУРНИРНАЯ ТАБЛИЦА 🏆</h2>
+        <p style="text-align:center; color:#666; margin-bottom:20px;">Лучшие игроки месяца</p>
+        <table class="tournament-table">
+            <thead>
+                <tr>
+                    <th style="text-align:center; width:60px;">#</th>
+                    <th>Игрок</th>
+                    <th style="text-align:right;">Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="text-align:center; font-weight:bold;">🥇 1</td><td>Виталий</td><td style="text-align:right; font-weight:bold; color:#27ae60;">1 000 000 💰</td></tr>
+                <tr><td style="text-align:center; font-weight:bold;">🥈 2</td><td>Николай</td><td style="text-align:right; font-weight:bold; color:#27ae60;">1 000 000 💰</td></tr>
+                <tr><td style="text-align:center; font-weight:bold;">🥉 3</td><td>Эдуард</td><td style="text-align:right; font-weight:bold; color:#27ae60;">1 000 000 💰</td></tr>
+                <tr><td style="text-align:center; font-weight:bold;">4</td><td>Артур</td><td style="text-align:right;">1 000 000 💰</td></tr>
+                <tr><td style="text-align:center; font-weight:bold;">5</td><td>Вадим</td><td style="text-align:right;">1 000 000 💰</td></tr>
+                <tr><td style="text-align:center; font-weight:bold;">6</td><td>Глеб</td><td style="text-align:right;">1 000 000 💰</td></tr>
+                <tr><td style="text-align:center; font-weight:bold;">7</td><td>Михаил</td><td style="text-align:right;">58 800 💰</td></tr>
+                <tr><td style="text-align:center; font-weight:bold;">8</td><td>Игрок</td><td style="text-align:right;">49 900 💰</td></tr>
+                <tr><td style="text-align:center; font-weight:bold;">9</td><td>Анжела</td><td style="text-align:right;">25 100 💰</td></tr>
+            </tbody>
+        </table>
+        <div style="text-align:center; margin-top:20px;"><button class="btn-play" onclick="window.closeModal('tournamentModal')">✓ ЗАКРЫТЬ</button></div>
+    </div>
+</div>
+
+<!-- ==================== ПОДКЛЮЧЕНИЕ СКРИПТОВ ==================== -->
+<script src="js/constants.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/game.js"></script>
+
+</body>
+</html>
